@@ -1,0 +1,77 @@
+class User: # common logic (python speciffic)
+    def __init__(self, nickname, password):
+        self.nickname = nickname
+        self.password = password
+        self.online = False
+        self.friends = []
+        self.posts = []
+        self.inbox = []
+        # list of User objects self.posts = [] # list of Post objects 
+    def __str__(self):
+        return f"user <{self.nickname}>" 
+    def repr (self):
+        return self.__str__() 
+    # User speciffic logic (app speciffic) def auth(self, nickname, password): if nickname == self.nickname and password == self.password: self.online = True # lose coupling return True else: return False 
+    def logout(self):
+        self.online= False 
+
+
+    def addFriend(self, friend): 
+    ## dray, a sketch/diagram if typc(fxiend) 1= User: return 
+        if type(friend) != User:
+            return
+
+        friend_exists = False 
+
+        for existing_friend in self.friends:
+            if existing_friend.nickname == friend.nickname: 
+                friend_exists = True 
+                break 
+        if not friend_exists: 
+            self.friends.append(friend)
+        
+    def post(self, title, body): 
+        new_post = Post(title,body) 
+        new_post.author = self 
+        #self.posts.append(new_post)
+        self.posts.append(new_post)
+        return new_post
+
+
+    def send_message(self, body, from_user, to_user, status):
+        send_message = Message(body, from_user, to_user, status)
+        self.inbox.append(send_message)
+    
+class Post:
+
+    def __init__(self, title, body):
+        self.title  = title 
+        self.body   = body
+
+    def __str__(self):
+        return f"Post <{self.title}>" 
+    def __repr__(self):
+        return self.__str__()
+
+
+class Message:
+    def __init__(self, body, from_user, to_user, status):
+        self.body = body
+        self.from_user = from_user
+        self.to_user = to_user
+        self.status = status
+
+    def __str__(self):
+        return f"Message:'{self.body}' From:'{self.from_user}' To:'{self.to_user}' Status:'{self.status}'" 
+    def __repr__(self):
+        return self.__str__()
+
+
+user1    = User("Andriuha", "123")
+user2    = User("Vanea" , "1234")
+
+
+mess = user1.send_message("Noroc",user1.nickname,user2.nickname,"seen")
+mess2 = user1.send_message("Salut",user2.nickname,user1.nickname,"seen")
+
+print(user1.inbox)
