@@ -72,6 +72,6 @@ user2    = User("Vanea" , "1234")
 
 
 mess = user1.send_message("Noroc",user1.nickname,user2.nickname,"seen")
-mess2 = user1.send_message("Salut",user2.nickname,user1.nickname,"seen")
+mess2 = user2.send_message("Salut",user2.nickname,user1.nickname,"seen")
 
 print(user1.inbox)
