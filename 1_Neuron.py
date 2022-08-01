@@ -5,9 +5,9 @@ print("  I      Xt0     Xt1      Yp      Yt       e     DW0     W0      DW1     
 x0 = [t for t in range(0,51)]
 x1 = [k for k in range(0,61)] 
 y = []
-xt0 = [0,   5, 10, 15, 20, 25, 27, 30, 35, 40] # < temp
-xt1 = [10, 20, 30, 35, 40, 45, 50, 50, 65, 70] # < hum
-yt =  [0,   0,  0,  0,  0,  1,  1,  1,  1,  1] 
+xt0 = [0, 5, 10, 13, 16, 19, 22, 27, 30, 33, 38, 41, 46, 49, 52, 57, 60, 65, 68, 73, 78, 81, 86, 91, 94, 99, 104, 109, 114, 119, 122, 127, 130, 133, 136, 141, 144, 149, 152, 157, 162, 167, 172, 177, 182, 187, 192, 197, 200, 205] # < temp
+xt1 = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245,] # < hum
+yt =  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,] 
 # learning rate
 lr = 0.001 
 epochs = 0
@@ -48,14 +48,14 @@ while epochs < 1:
             accuracy1[i] = safe_div(e)
     epochs += 1
 print("Epochs  Delta Weight  Weight")
-print(f"{epochs:6} {dW0:12} {W0:6}")
+print(f"{epochs:6} {dW0:12.4} {W0:6.4}")
 
 print("Training DONE!")
 
 accuracy_avg = (sum(accuracy0) + sum(accuracy1)) / (len(accuracy0) + len(accuracy1))
 
-
-print(f"ACCURACY: {accuracy_avg*100}%")
+accuracy_avgg = accuracy_avg*100
+print(f"ACCURACY: {accuracy_avgg:3.4}%")
 
 for i in range(len(x0)):
     for j in range(len(x1)):
